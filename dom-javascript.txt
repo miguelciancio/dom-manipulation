@@ -3,3 +3,144 @@ DOM Course
 What is DOM?
 
 DOM stands for Document Object Model. DOM is a built-in that has many properties and methods that we can use to manipulate the content, the structure and the style of a project, which is one of the most unique and useful abilities in JavaScript.
+
+Another way to think about DOM is as a tree. You have the first element of your tree - called root - gives "birth" to the rest of the elements. So, most of the elements of your tree - diagram - have a parent-child-sibling relationship
+Ex.:
+
+		                 Document
+	                          	         |
+	______________Element <html>______________
+	|					|
+	|					|
+            Element                                                                           Element 
+            <head>				            <body>
+	|					|
+	|					|
+       	|         		                                        ---------------------------
+	|                                                                           |                                |
+	|			                      |                                |
+            Element                       Class Attribute -------- Element                    Element 
+              <title>		"className" 	<p>	                <h1>
+	|			                     |                                 |
+	|			                     |                                 |
+         Text: 'This is 			                 Text:  	               Text: 
+           my website'			        'My Paragraph'           'My Header'
+
+So, basically, the top most node "Document" on the tree above is  the root node of the dom tree which we use access the dom and manipulate all of the content.
+Now, this 'document' node has only one child node which is the 'html' element and the 'html' is a parent node to the 'head' and 'body' element.
+Now, the 'head' and 'body' elements are what you would call siblings since they are on the same level in the dom tree.
+Underneath the 'head' element you see it has only one child node which is the 'title' element and the text underneath the title is a child node of the 'title' element. These relationships also applied to the other side of the dom tree, under the 'body' element.
+So, the 'body' element is the parent of the 'paragraph' and 'h1' whose are siblings to each other. The text contents inside each of these elements are trial nodes to the 'paragraph' and 'h1', which basically are child nodes to them.
+Now, next to the 'paragraph' element you could see a class attribute and html attributes such as ids or classes are also considered as nodes in the dom hierarchy. However, they don't actually participate in this parent-child-sibling relationship like the other nodes do. Therefore, the way to access them is through properties of the element node that they are contained in.
+
+
+1 - SELECTING ELEMENTS IN THE DOM:
+
+Basically, the're a couple of way to select any element in your dom tree:
+. getElementById() ---> As the name suggest, you literally capture the element by his id. Keep in mind that on html5 id must be unique. That means, you can't have more than 1 element with the same id.
+
+. getElementByClassName() ---> This way you can get the element or all the elements that have the same class name. You could have more than one element with the same class name, so that is the reason for this thing happens.
+
+. getElementsByTagName() ---> With this method, you can get all the elements with the same tag. That means if you have tons of paragraphs in your html file and you want to capture all of them at once, you should use this method here becausa that is exactly what is going to do.
+
+. querySelector() ---> This one is used to select ONLY ONE item or the FIRST item that matches the select has given. So, if you have multiple items with the same tag, class names or eve the same id, it will select the first one it comes across. So, the beauty of this method is that you can select ANY element across your html/css file.
+
+. querySelectorAll() ---> This method is pretty much similar with the previously one but instead of be limited to select only one element, here you can select multiples elements. Let's say that you have 12 div in your html file and you wanto to select them all at once. So, with this method you can do it.
+
+
+2 - STYLING AN ELEMENT:
+
+In order to change the style of an element, first-of-all you must get the element by one of the various current methods on JS and storage this element on a variable. After that, you will be able to access it by typing the command '.style' after the variable.
+Ex.:
+	const title = window.document.querySelector('h1');
+	title.style.color = 'red';
+
+This method is called in-line style this is probably the most direct method to do it. Of course, there are another methods to style an element by JS.
+
+OBS: A quickly remind: CSS properties are written in Camel Case and not with a more standard snake case which has the dash, so the Camel Case is essentially just a capitle letter to begin the second word  and any subsequent word in the name or method or even a property.
+Ex.:
+	CSS --> font-size = 1.2em;
+	JS    --> fontSize = 1.2em;
+
+
+3 - CREATING AN ELEMENT:
+It is very easy and simple to create ANY html element with JS.
+Ex.:
+	// CREATE THE ELEMENTS.
+	const ul = window.document.querySelector('ul');
+	const li = window.document.createElement('li');
+
+	// ADD THE ELEMENTS
+	ul.append(li);
+
+		
+4 - MODIFY TEST:
+It is important to note that there are a couple of way to include/modify text on your html element and those ways are 'innerTEXT', 'textContent' and 'innerHTML'.
+So the difference among them is that the 'innerText' simply get the visible text contained inside that node. With 'textContent' it's actually display the same way it is in the html file, so it's got all those indents and it's jumping onto a new line and with 'innerHTML' a similar sort of thing with the indents and jumping on new lines but it's also showing the tags.
+Now, there is a bit of danger using 'innerHTML' and that is mainly a security issues. You don't really want user input to be displayed in the 'innerHTML' because this actually allows user to control the javascript and html on your web page which obviously has its problems there.
+Ex.:
+	li.innerText = 'X-men';
+
+
+5 - MODIFYING ELEMENTS ATTRIBUTE & CLASSES:
+There are several ways to do it and the first method that you are taking a look at is the setAttribute().
+Ex.:
+	// MODIFYNG ATTRIBUTE
+	li.setAttribute('id', 'main-heading');
+
+Now, you are taking a look on how to remove the created/existed attribute on a HTML element.
+Ex.:
+	// REMOVING ATTRIBUTE
+	li.removeAttribute('id');
+
+There is another way to create an element's attribute.
+Ex.:
+	const title = window.document.querySelector('#main-heading');
+	title.getAttribute('id);
+
+Now let's see how to deal with classes. In order to do it you are going to the property 'classList'. This property has a quite few ways to utilise it and let's see them all. The first way is simple the method '.add'.
+Ex.:
+	li.classList.add('list-items');
+
+Now another thing you could find out is wheter an element has that specific class by the method contained.
+Ex.:
+	console.log(li.classList.contains('list-items));
+
+
+
+6 - REMOVE ELEMENTS;
+It is very simple to do it, all you have to do is to use the method '.remove()' after the element you want.
+Ex.:
+	li.remove()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
