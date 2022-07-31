@@ -1,37 +1,36 @@
 // DOM Manipulation
 
+/*
+
+-----------------------------------------------------------------------------------------------------------------------------------
+|                                                       STYLING ELEMENTS                                                          |
+-----------------------------------------------------------------------------------------------------------------------------------
+
+const title =  window.document.querySelector('h1#main-heading');
+
+title.style.color = 'red';
+
+const listItems = window.document.querySelectorAll('li.list-items');
+
+for (i = 0; i < listItems.length; i++) {
+    listItems[i].style.fontSize = '5rem';
+}
+
+*/
 
 
-// GetElementById()
 
-/*const title = window.document.getElementById('main-heading');
+/*
 
-console.log(title);*/
+-----------------------------------------------------------------------------------------------------------------------------------
+|                                                       CREATING ELEMENTS                                                         |
+-----------------------------------------------------------------------------------------------------------------------------------
 
-
-// GetElementByClassName()
-
-/*const listItem = document.getElementsByClassName('list-items');
-
-console.log(listItem);*/
+*/
 
 
-// GetElementsByTagName()
-
-/*const listItem = window.document.getElementsByTagName('li');
-
-console.log(listItem);*/
 
 
-// querySelector()
-
-/*const container = window.document.querySelector('div.container');
-
-console.log(container)*/
 
 
-// querySelectorAll()
-
-const container = window.document.querySelectorAll('div');
-
-console.log(container)
+console.log();
