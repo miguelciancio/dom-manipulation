@@ -1,0 +1,5 @@
+DOM Course
+
+What is DOM?
+
+DOM stands for Document Object Model. DOM is a built-in that has many properties and methods that we can use to manipulate the content, the structure and the style of a project, which is one of the most unique and useful abilities in JavaScript.
