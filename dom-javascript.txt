@@ -192,6 +192,25 @@ Ex.:
 	console.log(nextSibling);
 
 
+8 - EVENT LISTENERS:
+Event listeners are among the most frequently used JavaScript structures in web design and what they do is basically just allow us to add interactive functionality to html elements by listening to different events that take place on the page, such as when a user presses a key or when elements loads or when a user clicks a button.
+Now, the most common events you might listen out for are load events, touch start events, key down events, mouseover events and of course click events.
+Here we are going to take a look on the two most common ways you can add event listeners in your. The first way you can include an event is actually inside of your html file and idrectly inside one of these elements. 
+So, what this event is the global on event attribute and this way of creating an event to an element works pretty much like any attribute you insert it directly into the html element that's present on the page or the element you want to apply the event to and then apply a one0liner script to that particular element.
+Ex.:
+	<button onclick="window.alert('I Love JavaScript')"
+
+So, that is the first way to include an event in your project which is just direct into the html on that element you will apply the event to.
+
+Now, the next method to create an event listener is the JavaScript 'adEventListener()' method and the way this method works is first include an element that we want to apply the event listener to. Inside the brackets you must include the type of event you want to create and then after this the second parameter is the function you want to fire off and then you also have an option here for a third parameter, which will take in a boolean data type so true or false and this is in relation to bubbling and capturing.
+Ex.:
+	window.document.addEventListener("click", function);
+
+Now, generally people do tend to use the '.addEventListener()' method more than the html on event method typically because you can apply as many event listeners to an element through the '.addEventListener()' whereas with the html on event method you can only apply it once so if you had one event already on a html element and then you try to apply another one and that new one would override the old one. However, again if you only want to apply one event the on event method works perfectly fine so.
+Ex.:
+	on event ---> onclick, etc.
+
+
 
 
 
