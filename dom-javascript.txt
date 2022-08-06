@@ -212,9 +212,55 @@ Ex.:
 
 
 
+9 - EVENT LISTENERS EXAMPLE:
+Here, you will se a simple example of event listener when you click a button and then you show or hide a HTML element. Basically, let's assume that you have a div with a class called container and inside of that div you have got a a button element which has a class of reveal-btn. Underneath that you've got another div of class hidden-content which is the one you will hide and show.
+
+Now the first thing you want to do is go to your JS file and create two constants so you can grab these two elements: reveal-btn and hidden-content.
+Ex.:
+	const revealBtn = window.document.querySelector('.reveal-btn');
+	const hiddenContent = window.document.querySelector (.hidden-content');
+
+Now, the next thing you want to do now is create a callback function which will check if our hidden content here has the class of reveal-btn.
+Ex.:
+	function revealContent () {
+		// how to read it - If the hiddenContent - grab the class name - contains reveal-btn:
+		if (hiddenContent.classList.contains('reveal-btn') {
+			hiddenContent.classList.remove('reveal-btn');
+		} else {
+			hiddenContent.classList.add('reveal-btn');
+		}
+	}
+
+So, basically what this callback function do is check if your hidden-content div contains a class of reveal-btn - for instance, class = 'hidden-content.reveal-btn' -  the function will remove the '.reveal-btn' from the name of the class. In case of false, the function will add the '.reveal-btn' to the name of the class.
+
+Now, the next thing you wanna do now is include your event listeners. So, you want to apply your event listeners in your button.
+Ex.:
+	revealBtn.addEventListener('click', revealContent);
+
+This action allows you to hide or show the content.
+
+And the last thing you will do now is visually hide your div which has the dummy test. So you do that inside your style sheet.
+Ex.:
+	.hidden-content {
+		display: none;
+	}
+	
+	.hidden-content.reveal-btn {
+		display: block;
+	}
+
+So, what you are essentially sayong here is that depending on the current state of your 'hidden-content', JavaScript will either add or remove the '.reveal-btn' class.
+
+So, that is how you can create really basic reveal hard functionality using event listeners which looks pretty simple but this technique actually can be used for maniy different things, such as toggling a menu on small screens so when you see that hamburguer menu or you can display error messages with this and many more things.
+
+Now, this is actually just scratching at the surface of event listeners and there are some things lurking underneath or more appropriately put lurking behind the scenes of event listeners, and that is event propagation and event delegation.
 
 
 
+10 - EVENT PROPAGATION:
+Now, event propagation refers to how an event travels through the document object model (DOM tree) and you can think of event propagation as electricity running through a wire until it reaches its destination.
+
+Now, you are fully aware the dom tree is full of nodes and when you referring to event propagation and events the event needs to pass through every node on the 
 
 
 
