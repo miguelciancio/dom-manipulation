@@ -260,23 +260,137 @@ Now, this is actually just scratching at the surface of event listeners and ther
 10 - EVENT PROPAGATION:
 Now, event propagation refers to how an event travels through the document object model (DOM tree) and you can think of event propagation as electricity running through a wire until it reaches its destination.
 
-Now, you are fully aware the dom tree is full of nodes and when you referring to event propagation and events the event needs to pass through every node on the 
+Now, you are fully aware the dom tree is full of nodes and when you referring to event propagation and events the event needs to pass through every node on the dom tree until it reaches the end or is forcibly stopped.
+
+Now, the event propagation is also the umbrella term which is used to cover three phases when dealing with event listeners:
+1 - Event capturing;
+2 - Target;
+3 - Event Bubbling.
+
+Now, in this simplest definition the capturing phases starts from the root and travels all the way to the target and after it has reached the target it goes into the bubbling phase which travels back up from the target to the root.
+
+Now, as example let's just assume you have a simple html file with onde div of class name div2 and then another div inside the previously one of class name div1 and one button inside the div1. 
+Ex.:
+	<body>
+		<div class = 'div2'>
+			2
+			<div class = 'div1'>
+				1
+				<button>Click</button>
+			</div>
+		</div>
+	</body>
+
+Now, if you head to the JavaScript file you will have event listeners on pretty much everything in the dom tree. So, you've got one for the window, one for the document, one for the div2, one for the div1 and another one for the button.
+Ex.:
+	window.addEventListener("click", function() {
+		console.log('Window');	
+	}, true);
+	
+	window.document.addEventListener("click", function() {
+		console.log('Document');
+	}, true);
+
+	window.document.querySelector('div2').addEventListener("click", function(){
+		console.log('DIV 2');	
+	}, true);
+
+	window.document.querySelector('div1).addEventListener("click", function(){
+		console.log('DIV 1');	
+	}, true);
+
+	window.document.querySelector('button').addEventListener("click", function(e) {
+		console.log(e);
+	}, true);
+
+Now, as you can see you've set this up a little bit different in regards to the event listeners. Instead of creating a variable for the window, the document as well as the elements here, you've just added the event listeners directly after. Now, creating a variable and doing it this way both work perfectly fine.
+
+Now, in regards to the events themselves you can see their click events and as for the functions they just simply log in their respective name in the dom tree, except for the button. Now, instead of text you can see you've included an 'e' inside of the functions parameters as well as the inside of the function we're logging in that 'e'.
+
+---------------------------   SUPER IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -----------------------------------
+Now, pay attention to the third parameter inside of all these event listeners. So, you can see they all have a boolean value 'true' and if you remember about the '.addEventListener()' method there was a third optional parameter you could include and well this third parameter dictates whether you want to use event capture or event bubbling.
+
+By default the value is always false, which means you will use event bubbling instead of event capture.
+
+-----------------------------------------------------------------------------------------------------------------------
+So, when you click in the button you will see in the console that it is giving you the first phase which is the capture phase. Basically, it is starting from the window and then it is going down and notifying all the other elements it comes across all the way down to the target which is saying is this 'PointerEvent'.
+
+Now, the stuff that you see here represents all of the information about that event. So, this is exactly what that 'e' means inside of your function here which is inside of your button.
+
+So, this 'e' represents the event object and again this is exactly what you see here on the console and all this information is about that event that has occurred on this button. So, if you open the 'PointerEvent' up you can see all the different properties and information about your event that you can use and that also includes the target, which is the main property you should pay attention to and the relevant one to the three phases of event propagation.
+
+So, basically this property represents the element that the event is actually on so again it is related to your target phase. So, if you actually go into your console there and you type 'e.target' anud you click on the button once again, you can see now it is starting from the window and going to the document, div2, div1 and because you are now using the target property to show you what element the event is on, which again is your button.
+
+Ex.:
+	window.document.querySelector("button").addEventListener("click", function (e) {
+		console.log(e.target);
+	}, true);
+
+So, this is the first and second phase of event propagation. 
+
+Now, how do we initiate the third phase which is the bubbling phase? Well to do that all you need to do is just grab all of the true values on your JavaScript file and change them to false value. Now, just to remind you, these values are already false by defaut.
+Ex.:
+	window.addEventListener("click", function() {
+		console.log('Window');	
+	}, false);
+	
+	window.document.addEventListener("click", function() {
+		console.log('Document');
+	}, false);
+
+	window.document.querySelector('div2').addEventListener("click", function(){
+		console.log('DIV 2');	
+	}, false);
+
+	window.document.querySelector('div1).addEventListener("click", function(){
+		console.log('DIV 1');	
+	}, false);
+
+	window.document.querySelector('button').addEventListener("click", function(e) {
+		console.log(e);
+	}, false);
 
 
+Now, If you click on the button you can see that the event propagation started from the button and then it is going to div 1, to div 2, to document and then the window. So, it is bubbling upwards hence the term event bubbling. So, from the target it is bubbling up to the highest position in the drom tree.
 
+Now, there are ways you can actually stop event propagation. So let's just say you wanted to stop the bubbling to happen at the second div. You can do that with the '.stopPropagation()' method.
+Ex.: 
+	window.document.querySelector('div2').addEventListener("click", function(e){
+		e.stopPropagation();
+		console.log('DIV 2');	
+	}, false);
 
+So, what should happen now is when you click on the button and once reach it reaches the second div you want the propagation to stop so you'll no longer be able to see the events on the document and the window.
 
+Now, obviously this also applies to event capturing.
 
+Another useful ability you can utilize an event bubbling is to have events fire off only once. So, for this example again you will use '.div2'. In order to do it, for your third parameter there what you can do is grab the 'once' property and set this to 'true' value. Now, if you click the button you can see it fires it all off as normal so it starts from the clicks and bubbles up all the way to the window. However, if you now click the button again you can see it's starting from the button or the target going to div1 but now div2 is no longer firing and then it goes on to the document and then the window and that happens because what you've done in your JavaScript file is define that you only want this event fire off once.
 
+Now, another common method you likely run into is the '.preventDeafult()' method. Now, what this method does is pretty much self-explanatory and it just prevents any default behavior that might occur on an element or an event. So, this is quite dependent on the type of element involved and the context of an event.
 
+So, in order to be able to see this happening let's just going to change your button to a an anchor tag element into your html file first. After that, you should also make sure to capture the anchor tagelement in your JavaScript file.
+Ex.:
+	<body>
+		<div class = 'div2'>
+			2
+			<div class = 'div1'>
+				1
+				<a href="" class="button">Click</a>
+			</div>
+		</div>
+	</body>
 
+	<script>
+		window.document.querySelector('.button').addEventListener("click", function(e) {
+		console.log(e);
+	}, false);
 
+And, because of this change when you click on the anchor tag now you can see it is firing off all the events but they quickly refresh and the reason it is doing this is because the default behavior of an anchor tag is to try and redirect you to somewhere else and this is what is causing this quick fire off of all the events and then a refresh.
 
-
-
-
-
-
-
-
+Now, you can stop this from happening with the '.preventDefault()' method.
+Ex.:
+	window.document.querySelector('.button').addEventListener("click", function(e) {
+		e.preventDefault();
+		console.log(e);
+	}, false);
 
