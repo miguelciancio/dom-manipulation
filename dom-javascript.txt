@@ -394,3 +394,42 @@ Ex.:
 		console.log(e);
 	}, false);
 
+
+
+11 - EVENT DELEGATION:
+Event delegation is one the most potent event handling patterns inside JavaScript and the dom tree, and what it does is allows users to append a single event listeners to a parent element that adds it to all of its present and future descendants that match that selector.
+
+So, as example, lets say that you have an unordered list and that you want to change the background-color of each list item to "lightgrey". Now, one way to do it would be like is showed below:
+Ex.:
+	window.document.querySelector('#football').addEventListener ('click', function(e) {
+		console.log('football is clicked!');
+		const target = e.target;
+		if (target.matches('li')) {
+			target.style.backgroundColor = 'lightgrey';
+		}
+	});
+
+OBS.:
+	The '.match()' is just a method which essentially checks with the target - which in this case is list item - matches with our CSS selector - which is going to be 'li' element - and this is going to return true and when it returns true it is going to change it background color.
+
+So, in case of you want to replicate it to the other list items you will have to essentially copy and paste this code for each of them and do some changes, such as, the id name inside the 'querySelector()' and the sports' name inside 'console.log()'. After you do those changes, you will notice that your code is quite big and one of the best way to reduce and simplify your code is with event delegation.
+
+So, the idea of event delegation is pretty simple. Instead of attaching the event listeners directly to each of the list items, you can delegate the listening to the parent - which is the 'ol' element which has the id called 'sports' in the example here.
+
+So, when the 'li' element is clicked the listener of the parent element catches the bubbling event and performs your determined task.
+Ex.:
+	window.document.querySelector('#sports').addEventListener('click', function(e) {
+		console.log(e.target.getAttribute('id') + ' is clicked!');
+		const target = e.target;
+		if (target.macthes('li') {
+			target.style.backgroundColor = 'lightgrey';
+		}
+	});
+
+So, now when you click on each list item will pop up a message inside the console saying that that item was clicked and also changes the background color. And those actions matches with the first part of event delegation definition - which said thjat allows users to append a single event listener to the parent element that adds it to all of its present children and as you can see this has clear benefits ranging from code quality as well as code maintenance because instead of having all those lines of code like in the first example where you attached an event listener to each of the list items, you now have it all inside one event listener on thye 'ul' element.
+
+Youi've also improved your performance because having more events in your code will take up a lot of memory and usin event delegation you are going to save a ton of memory.
+
+Now, another crucial benefit of event delegation is the second part of the definition - which is: also adds it to future descendants that match tha selector. So, this is actually in regard to dynamic elements - which is to add new elements according to the users wishes.
+
+So, any new element that is included in yout parent element will also inherit the event listener.
