@@ -22,6 +22,10 @@ addTask.addEventListener('click', function() {
     checkButton.classList.add('checkTask');
     task.appendChild(checkButton);
 
-    
+    // Create Delete Button adding it into the 'div' element.
+    let deleteButton = window.document.createElement('button');
+    deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    deleteButton.classList.add('deleteTask');
+    task.appendChild(deleteButton);
 
 });
