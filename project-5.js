@@ -16,5 +16,12 @@ addTask.addEventListener('click', function() {
     li.innerHTML = `${inputTask.value}`;
     task.appendChild(li);
 
+    // Create Check Button adding it into the 'div' element.
+    let checkButton = window.document.createElement('button');
+    checkButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+    checkButton.classList.add('checkTask');
+    task.appendChild(checkButton);
+
+    
 
 });
