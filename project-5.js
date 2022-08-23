@@ -38,4 +38,14 @@ addTask.addEventListener('click', function() {
     // Clear the input field after add a task.
     inputTask.value = "";
 
+    // Create Buttons Functionalities.
+    checkButton.addEventListener('click', function(){
+        checkButton.parentElement.style.textDecoration = 'line-through';
+    });
+
+    deleteButton.addEventListener('click', function(e) {
+        let target = e.target;
+        target.parentElement.parentElement.remove();
+    });
+
 });
