@@ -28,4 +28,14 @@ addTask.addEventListener('click', function() {
     deleteButton.classList.add('deleteTask');
     task.appendChild(deleteButton);
 
+    // Create Some Validations: Error message in case of user click on add without typing anything on input field and also add the item in your to-do list.
+    if(inputTask.value === "") {
+        window.alert('ERROR: Please, enter a task!')
+    } else {
+        taskContainer.appendChild(task);
+    };
+
+    // Clear the input field after add a task.
+    inputTask.value = "";
+
 });
